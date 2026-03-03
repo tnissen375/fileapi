@@ -8,7 +8,18 @@ services:
     ports:
       - "8070:80"
     volumes:
-      # Portainer: XML-Dateien vom Host/Volume dynamisch einbinden
-      # Änderungen an Dateien im gemounteten Pfad werden sofort ausgeliefert
-      - ./data:/usr/share/nginx/html:ro
+      # Seed source from repository
+      - ./data:/seed:ro
+      # Persistent Docker volume for runtime files
+      - xml_data:/usr/share/nginx/html
+    command: >
+      sh -c "
+      if [ -z \"$(ls -A /usr/share/nginx/html 2>/dev/null)\" ]; then
+        cp -a /seed/. /usr/share/nginx/html/;
+      fi;
+      exec nginx -g 'daemon off;'
+      "
     restart: unless-stopped
+
+volumes:
+  xml_data:
