@@ -8,18 +8,9 @@ services:
     ports:
       - "8070:80"
     volumes:
-      # Seed source from repository
-      - ./data:/seed:ro
-      # Persistent Docker volume for runtime files
-      - xml_data:/usr/share/nginx/html
+      - /api:/usr/share/nginx/html:ro
     command: >
       sh -c "
-      if [ -z \"$(ls -A /usr/share/nginx/html 2>/dev/null)\" ]; then
-        cp -a /seed/. /usr/share/nginx/html/;
-      fi;
       exec nginx -g 'daemon off;'
       "
     restart: unless-stopped
-
-volumes:
-  xml_data:

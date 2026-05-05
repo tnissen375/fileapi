@@ -9,7 +9,7 @@ RUN printf "server {\n\
     location / {\n\
         root /usr/share/nginx/html;\n\
         default_type application/xml;\n\
-        index example.xml;\n\
+        index wtg.xml;\n\
     }\n\
 }\n" > /etc/nginx/conf.d/default.conf
 
