@@ -1,0 +1,4 @@
+__pycache__/
+gps_daten.csv
+.*
+!.gitignore
