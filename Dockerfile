@@ -1,7 +1,7 @@
 FROM nginx:alpine
 
 # XML-Dateien in das Web-Verzeichnis kopieren
-COPY data/ /usr/share/nginx/html/
+#COPY data/ /usr/share/nginx/html/
 
 # Explizit Content-Type für XML setzen
 RUN printf "server {\n\
