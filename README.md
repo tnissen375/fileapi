@@ -2,7 +2,7 @@
 
 Minimaler Nginx-Container zum Ausliefern statischer API-Dateien wie XML und JSON.
 
-Der Container stellt den Inhalt von `/api` read-only ueber HTTP auf Port `8070` und ueber HTTPS auf Port `8443` bereit. Damit koennen Dateien auf dem Host ausgetauscht werden, ohne das Image neu zu bauen.
+Der Container stellt den Inhalt von `/api` read-only ueber HTTP auf Port `8070` und ueber HTTPS auf Port `443` bereit. Damit koennen Dateien auf dem Host ausgetauscht werden, ohne das Image neu zu bauen.
 
 ## Features
 
@@ -31,18 +31,18 @@ Der Container stellt den Inhalt von `/api` read-only ueber HTTP auf Port `8070` 
 docker compose up -d --build
 ```
 
-Die Dateien aus `/api` sind danach ueber `http://localhost:8070/` und `https://localhost:8443/` erreichbar.
+Die Dateien aus `/api` sind danach ueber `http://localhost:8070/` und `https://localhost/` erreichbar.
 
 Beispiele:
 
 ```bash
 curl http://localhost:8070/wtg.xml
 curl http://localhost:8070/wtg.json
-curl -k https://localhost:8443/wtg.xml
-curl -k https://localhost:8443/wtg.json
+curl -k https://localhost/wtg.xml
+curl -k https://localhost/wtg.json
 ```
 
-Das HTTPS-Zertifikat ist selbstsigniert. Browser und `curl` vertrauen ihm deshalb nicht automatisch. Soll der Dienst auf dem Host direkt unter Port `443` laufen, aendere in `docker-compose.yml` die Port-Zuordnung `8443:443` zu `443:443`.
+Das HTTPS-Zertifikat ist selbstsigniert. Browser und `curl` vertrauen ihm deshalb nicht automatisch.
 
 ## Host-Dateien
 

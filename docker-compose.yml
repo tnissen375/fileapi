@@ -7,7 +7,7 @@ services:
     container_name: api-server
     ports:
       - "8070:80"
-      - "8443:443"
+      - "443:443"
     volumes:
       - /api:/usr/share/nginx/html:ro
     command: >
